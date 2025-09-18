@@ -1,0 +1,32 @@
+ 0 2000 755 capabilities=0x0
+vendor/bin 0 2000 751 capabilities=0x0
+vendor/bin/hw 0 2000 751 capabilities=0x0
+vendor/bin/hw/rild 0 2000 755 capabilities=0x0
+vendor/bin/hw/vendor.samsung.hardware.vibrator-service 0 2000 755 capabilities=0x0
+vendor/etc 0 2000 755 capabilities=0x0
+vendor/etc/init 0 2000 755 capabilities=0x0
+vendor/etc/init/init.vendor.rilcommon.rc 0 0 644
+vendor/etc/vintf/manifest/vendor.samsung.hardware.radio_manifest_2_31.xml 0 0 644 capabilities=0x0
+vendor/etc/vintf/manifest/vendor.samsung.hardware.radio.exclude.slsi.xml 0 0 644 capabilities=0x0
+vendor/etc/vintf/manifest/vendor.samsung.hardware.sehradio_manifest_2_31.xml 0 0 644 capabilities=0x0
+vendor/etc/init/vendor.samsung.hardware.vibrator-default.rc 0 0 644 capabilities=0x0
+vendor/etc/vintf 0 2000 755 capabilities=0x0
+vendor/etc/vintf/manifest 0 2000 755 capabilities=0x0
+vendor/etc/vintf/manifest/vendor.samsung.hardware.vibrator-default.xml 0 0 644 capabilities=0x0
+vendor/lib64 0 2000 755 capabilities=0x0
+vendor/lib64/hw/vibrator.default.so 0 0 644 capabilities=0x0
+vendor/lib64/libvibrator.so 0 0 644 capabilities=0x0
+vendor/lib64/vendor.samsung.hardware.vibrator-V5-ndk.so 0 0 644 capabilities=0x0
+vendor/bin/emservice 0 2000 755 capabilities=0x0
+vendor/etc/init/init.vendor.rilchip.rc 0 0 644 capabilities=0x0
+vendor/lib64/android.hardware.radio.config@1.3.so 0 0 644
+vendor/lib64/android.hardware.radio@1.5.so 0 0 644 capabilities=0x0
+vendor/lib64/android.hardware.radio@1.6.so 0 0 644 capabilities=0x0
+vendor/lib64/libengmode2lite.so 0 0 644 capabilities=0x0
+vendor/lib64/libengmode15.so 0 0 644 capabilities=0x0
+vendor/lib64/libengmode_client.so 0 0 644 capabilities=0x0
+vendor/lib64/libengmode_server.so 0 0 644 capabilities=0x0
+vendor/lib64/libengmode_tlc.so 0 0 644 capabilities=0x0
+vendor/lib64/libsecril-client.so 0 0 644 capabilities=0x0
+vendor/lib64/libsec_semRil.so 0 0 644 capabilities=0x0
+vendor/lib64/libSemDataProps.so 0 0 644 capabilities=0x0
