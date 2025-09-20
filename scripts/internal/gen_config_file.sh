@@ -335,6 +335,7 @@ fi
     GET_BUILD_VAR "SOURCE_VENDOR_API_LEVEL"
     GET_BUILD_VAR "TARGET_NAME"
     GET_BUILD_VAR "TARGET_CODENAME"
+    GET_BUILD_VAR "SOURCE_CODENAME"
     if [ "${#TARGET_ASSERT_MODEL[@]}" -ge 1 ]; then
         echo "TARGET_ASSERT_MODEL=\"$(IFS=":"; printf '%s' "${TARGET_ASSERT_MODEL[*]}")\""
     else
