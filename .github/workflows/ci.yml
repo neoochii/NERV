@@ -10,6 +10,9 @@ on:
         type: choice
         options:
           - m62
+  push:
+    branches:
+      - '9825'
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -47,7 +50,9 @@ jobs:
       - name: Generate CI matrix
         id: generate-matrix
         run: |
-          matrix=$(jq -cn --arg t "${{ github.event.inputs.target }}" '[$t]')
+          TARGET="${{ github.event.inputs.target }}"
+          TARGET="${TARGET:-m62}"
+          matrix=$(jq -cn --arg t "$TARGET" '[$t]')
           echo "$matrix"
           echo "matrix=$matrix" >> "$GITHUB_OUTPUT"
 
