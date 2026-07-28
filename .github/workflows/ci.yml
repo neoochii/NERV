@@ -107,7 +107,7 @@ jobs:
 
       - name: Generate build config
         run: |
-          source ./buildenv.sh ${{ matrix.target }}
+          source ./buildenv.sh --debug ${{ matrix.target }}
           {
             echo "DEBUG=$DEBUG"
             echo "SRC_DIR=$SRC_DIR"
