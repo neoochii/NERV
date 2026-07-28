@@ -23,6 +23,10 @@ FORCE=false
 BUILD_ROM=false
 BUILD_ZIP=true
 
+if [[ "${DEBUG:-false}" == "true" ]]; then
+    BUILD_ZIP=false
+fi
+
 START_TIME="$(date +%s)"
 
 SOURCE_FIRMWARE_PATH="$(cut -d "/" -f 1 -s <<< "$SOURCE_FIRMWARE")_$(cut -d "/" -f 2 -s <<< "$SOURCE_FIRMWARE")"
