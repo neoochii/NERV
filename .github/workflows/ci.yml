@@ -10,9 +10,8 @@ on:
         type: choice
         options:
           - m62
-  push:
-    branches:
-      - '9825'
+          - o1s
+          - r9s
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -50,12 +49,10 @@ jobs:
       - name: Generate CI matrix
         id: generate-matrix
         run: |
-          TARGET="${{ github.event.inputs.target }}"
-          TARGET="${TARGET:-m62}"
-          matrix=$(jq -cn --arg t "$TARGET" '[$t]')
+          matrix=$(jq -cn --arg t "${{ github.event.inputs.target }}" '[$t]')
           echo "$matrix"
           echo "matrix=$matrix" >> "$GITHUB_OUTPUT"
-
+        
   build:
     name: Build
     needs: [shellcheck, generate-matrix]
@@ -110,7 +107,7 @@ jobs:
 
       - name: Generate build config
         run: |
-          source ./buildenv.sh  --debug ${{ matrix.target }}
+          source ./buildenv.sh ${{ matrix.target }}
           {
             echo "DEBUG=$DEBUG"
             echo "SRC_DIR=$SRC_DIR"
@@ -141,7 +138,7 @@ jobs:
 
       - name: Build ROM
         run: ./scripts/make_rom.sh
-
+        
       - name: Install rclone and restore config
         run: |
           sudo apt update
@@ -150,13 +147,7 @@ jobs:
           cat > ~/.config/rclone/rclone.conf << 'EOF'
           ${{ secrets.RCLONE_CONF }}
           EOF
-
+          
       - name: Upload ROM to Google Drive
         run: |
-          rclone copy out mydrive:UN1CA/m62 \
-            --include "*${{ matrix.target }}*.zip" \
-            --progress \
-            --drive-chunk-size 256M \
-            --transfers 1 \
-            --retries 5 \
-            --low-level-retries 10
+          rclone copy out mydrive:UN1CA --include "*.zip" --progress
