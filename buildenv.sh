@@ -127,21 +127,28 @@ while IFS= read -r t; do
     TARGETS+=("$t")
 done < <(find "$SRC_DIR/target" -mindepth 1 -maxdepth 1 -type d -printf "%f\n" | sort)
 
-while [[ "$1" == "-"* ]]; do
+SELECTED_TARGET=""
+while [ "$#" -gt 0 ]; do
     if [[ "$1" == "--debug" ]]; then
         export DEBUG=true
     elif [[ "$1" == "--help" ]] || [[ "$1" == "-h" ]]; then
         _PRINT_USAGE
         return 0
-    else
+    elif [[ "$1" == "-"* ]]; then
         echo "Unknown option: $1" >&2
         _PRINT_USAGE
         return 1
+    elif [ -n "$SELECTED_TARGET" ]; then
+        echo "Too many targets specified." >&2
+        _PRINT_USAGE
+        return 1
+    else
+        SELECTED_TARGET="$1"
     fi
     shift
 done
 
-if [ "$#" -ne 1 ]; then
+if [ -z "$SELECTED_TARGET" ]; then
     echo "No target specified. Please choose from the available devices below:"
 
     select SELECTED_TARGET in "${TARGETS[@]}"; do
@@ -151,8 +158,6 @@ if [ "$#" -ne 1 ]; then
             echo "Invalid selection. Please try again."
         fi
     done
-else
-    SELECTED_TARGET="$1"
 fi
 
 if [ ! -d "$SRC_DIR/target/$SELECTED_TARGET" ]; then
